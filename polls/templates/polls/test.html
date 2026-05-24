@@ -1,0 +1,40 @@
+<!--	{% load static %} -->
+ <h1>test formm</h1>
+ <small>majaribio ya kutuma requst in server</small>
+  <form action="http://127.0.0.1:8000/send/" method="POST" accept-charset="utf-8" enctype="multipart/form-data">
+      {% csrf_token %}
+      
+      <input type="text" name="name" id="" value="" placeholder="write name"/>
+      <input type="file" name="img" value="" placeholder="choose image" /> <br />
+      <input type="file" name="video" placeholder="choose video"> <br />
+      <input type="file" name="audio" placeholder="choose audio">
+      
+      
+      <button type="submit">send</button>
+      
+  </form>
+  
+  <div>
+      {% for user in users %}
+<p>   <small>{{user.id}}</small> {{ user.user }}</p>
+{% if user.image %}
+<img src="{{ user.image.url }}" width="30">
+ {% endif %}
+ 
+ {% if user.video %}
+
+        <video width="400" controls>
+            <source src="{{ user.video.url }}">
+        </video>
+
+    {% endif %}
+     {% if user.audio %}
+
+        <audio width="400" controls>
+            <source src="{{ user.audio.url }}">
+        </audio>
+
+    {% endif %}
+{% endfor %}
+
+  </div>
